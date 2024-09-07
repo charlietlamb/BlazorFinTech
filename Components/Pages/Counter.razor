@@ -1,0 +1,32 @@
+﻿@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+<input @bind="input" @bind:event="oninput" />
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@for (int i = 0; i < currentCount; i++)
+{
+    <div>@i</div>
+}
+
+
+@code {
+    private int currentCount = 0;
+    private string input = "";
+    private void IncrementCount()
+    {
+        if (int.TryParse(input, out int increment))
+        {
+            currentCount+=increment;
+        }
+        else
+        {
+            currentCount++;
+        }
+    }
+}
